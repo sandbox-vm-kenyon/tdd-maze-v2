@@ -35,4 +35,22 @@ _To be defined in `feature/bob-martin-logic-api`._
 
 ### infrastructure (`src/infrastructure/index.js`)
 
-_To be defined in `feature/bob-martin-infra-api`._
+```js
+/**
+ * Cell — a single grid position with four walls.
+ * @typedef {{ N: boolean, S: boolean, E: boolean, W: boolean }} Cell
+ * Wall value `true` = wall present, `false` = open passage.
+ */
+
+/**
+ * getCell() → Cell
+ * Returns a new Cell with all walls intact (true).
+ */
+
+/**
+ * generateMaze(rows: number, cols: number) → Cell[][]
+ * Returns a 2-D grid (maze[row][col]) representing a perfect maze.
+ * Uses recursive back-tracking. Every cell is reachable; no loops.
+ * Boundary (perimeter) walls are always intact.
+ */
+```

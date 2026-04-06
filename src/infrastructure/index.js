@@ -7,5 +7,7 @@
  * logic or presentation.
  */
 
-// Barrel exports will be added as modules are implemented.
-module.exports = {};
+const getCell = require('./getCell');
+const generateMaze = require('./generateMaze');
+
+module.exports = { getCell, generateMaze };
