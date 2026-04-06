@@ -28,3 +28,20 @@ describe('Layer structure', () => {
     expect(fs.existsSync(path.join(srcDir, 'infrastructure', 'index.js'))).toBe(true);
   });
 });
+
+describe('Barrel exports', () => {
+  test('presentation barrel exports an object', () => {
+    const presentation = require('../src/presentation');
+    expect(typeof presentation).toBe('object');
+  });
+
+  test('logic barrel exports an object', () => {
+    const logic = require('../src/logic');
+    expect(typeof logic).toBe('object');
+  });
+
+  test('infrastructure barrel exports an object', () => {
+    const infrastructure = require('../src/infrastructure');
+    expect(typeof infrastructure).toBe('object');
+  });
+});
