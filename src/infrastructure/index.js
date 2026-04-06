@@ -8,5 +8,6 @@
  */
 
 const getCell = require('./getCell');
+const generateMaze = require('./generateMaze');
 
-module.exports = { getCell };
+module.exports = { getCell, generateMaze };
