@@ -8,8 +8,10 @@
 
 const renderMaze = require('./renderMaze');
 const renderPlayer = require('./renderPlayer');
+const initGame = require('./initGame');
 
 module.exports = {
   renderMaze,
   renderPlayer,
+  initGame,
 };

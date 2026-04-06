@@ -53,4 +53,10 @@ describe('presentation layer API', () => {
       expect(ctx.fill).toHaveBeenCalled();
     });
   });
+
+  describe('initGame', () => {
+    test('is exported as a function', () => {
+      expect(typeof presentation.initGame).toBe('function');
+    });
+  });
 });
