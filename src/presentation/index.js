@@ -6,5 +6,12 @@
  * Dependency rule: presentation → logic → infrastructure (never the reverse).
  */
 
-// Barrel exports will be added as modules are implemented.
-module.exports = {};
+const renderMaze = require('./renderMaze');
+const renderPlayer = require('./renderPlayer');
+const initGame = require('./initGame');
+
+module.exports = {
+  renderMaze,
+  renderPlayer,
+  initGame,
+};
