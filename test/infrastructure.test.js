@@ -19,4 +19,14 @@ describe('generateMaze', () => {
     expect(maze).toHaveLength(3);
     maze.forEach(row => expect(row).toHaveLength(4));
   });
+
+  test('every cell has exactly N, S, E, W boolean properties', () => {
+    const maze = generateMaze(4, 5);
+    for (const row of maze) {
+      for (const cell of row) {
+        expect(Object.keys(cell).sort()).toEqual(['E', 'N', 'S', 'W']);
+        Object.values(cell).forEach(v => expect(typeof v).toBe('boolean'));
+      }
+    }
+  });
 });
