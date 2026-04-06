@@ -45,6 +45,13 @@ describe('generateMaze', () => {
     expect(count).toBe(rows * cols);
   });
 
+  test('handles a 1×1 maze', () => {
+    const maze = generateMaze(1, 1);
+    expect(maze).toHaveLength(1);
+    expect(maze[0]).toHaveLength(1);
+    expect(maze[0][0]).toEqual({ N: true, S: true, E: true, W: true });
+  });
+
   test('boundary walls on the perimeter remain intact', () => {
     const rows = 4, cols = 5;
     const maze = generateMaze(rows, cols);
