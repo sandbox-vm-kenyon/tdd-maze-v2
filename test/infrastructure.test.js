@@ -45,6 +45,17 @@ describe('generateMaze', () => {
     expect(count).toBe(rows * cols);
   });
 
+  test('walls are consistent between adjacent cells', () => {
+    const rows = 4, cols = 4;
+    const maze = generateMaze(rows, cols);
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (r + 1 < rows) expect(maze[r][c].S).toBe(maze[r + 1][c].N);
+        if (c + 1 < cols) expect(maze[r][c].E).toBe(maze[r][c + 1].W);
+      }
+    }
+  });
+
   test('every cell has exactly N, S, E, W boolean properties', () => {
     const maze = generateMaze(4, 5);
     for (const row of maze) {
