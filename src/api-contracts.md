@@ -31,7 +31,31 @@ _To be defined in `feature/martin-fowler-presentation-api`._
 
 ### logic (`src/logic/index.js`)
 
-_To be defined in `feature/bob-martin-logic-api`._
+Exports a single `gameLogic` facade with four functions:
+
+```js
+/**
+ * canMove(maze: Cell[][], pos: { row, col }, direction: 'N'|'S'|'E'|'W') → boolean
+ * Returns true if the wall is open (passage exists) in the given direction.
+ */
+
+/**
+ * movePlayer(maze: Cell[][], pos: { row, col }, direction: 'N'|'S'|'E'|'W') → { row, col }
+ * Returns a new position if the move is valid, or the same position if blocked.
+ */
+
+/**
+ * isWon(pos: { row, col }, rows: number, cols: number) → boolean
+ * Returns true if the player has reached the bottom-right cell.
+ */
+
+/**
+ * handleKey(state: GameState, key: string) → GameState
+ * Processes a keypress (arrow keys or WASD). Returns updated state with
+ * new position and win flag, or the same state if the move is invalid.
+ * No-ops when state.won is already true.
+ */
+```
 
 ### infrastructure (`src/infrastructure/index.js`)
 
