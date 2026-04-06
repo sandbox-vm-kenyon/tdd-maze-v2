@@ -45,6 +45,19 @@ describe('generateMaze', () => {
     expect(count).toBe(rows * cols);
   });
 
+  test('boundary walls on the perimeter remain intact', () => {
+    const rows = 4, cols = 5;
+    const maze = generateMaze(rows, cols);
+    for (let c = 0; c < cols; c++) {
+      expect(maze[0][c].N).toBe(true);
+      expect(maze[rows - 1][c].S).toBe(true);
+    }
+    for (let r = 0; r < rows; r++) {
+      expect(maze[r][0].W).toBe(true);
+      expect(maze[r][cols - 1].E).toBe(true);
+    }
+  });
+
   test('walls are consistent between adjacent cells', () => {
     const rows = 4, cols = 4;
     const maze = generateMaze(rows, cols);
