@@ -1,4 +1,12 @@
-const { getCell, generateMaze } = require('../src/infrastructure');
+const infrastructure = require('../src/infrastructure');
+const { getCell, generateMaze } = infrastructure;
+
+describe('infrastructure barrel', () => {
+  test('exports getCell and generateMaze as functions', () => {
+    expect(typeof infrastructure.getCell).toBe('function');
+    expect(typeof infrastructure.generateMaze).toBe('function');
+  });
+});
 
 describe('getCell', () => {
   test('returns a Cell with N, S, E, W boolean wall properties, all true by default', () => {
