@@ -1,0 +1,60 @@
+const fs = require('fs');
+const path = require('path');
+
+const srcDir = path.resolve(__dirname, '..', 'src');
+
+describe('Layer structure', () => {
+  test('src/presentation/ directory exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'presentation'))).toBe(true);
+  });
+
+  test('src/logic/ directory exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'logic'))).toBe(true);
+  });
+
+  test('src/infrastructure/ directory exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'infrastructure'))).toBe(true);
+  });
+
+  test('src/presentation/index.js barrel exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'presentation', 'index.js'))).toBe(true);
+  });
+
+  test('src/logic/index.js barrel exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'logic', 'index.js'))).toBe(true);
+  });
+
+  test('src/infrastructure/index.js barrel exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'infrastructure', 'index.js'))).toBe(true);
+  });
+});
+
+describe('Barrel exports', () => {
+  test('presentation barrel exports an object', () => {
+    const presentation = require('../src/presentation');
+    expect(typeof presentation).toBe('object');
+  });
+
+  test('logic barrel exports an object', () => {
+    const logic = require('../src/logic');
+    expect(typeof logic).toBe('object');
+  });
+
+  test('infrastructure barrel exports an object', () => {
+    const infrastructure = require('../src/infrastructure');
+    expect(typeof infrastructure).toBe('object');
+  });
+});
+
+describe('API contracts document', () => {
+  test('src/api-contracts.md exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'api-contracts.md'))).toBe(true);
+  });
+
+  test('api-contracts.md documents the dependency rule', () => {
+    const contents = fs.readFileSync(path.join(srcDir, 'api-contracts.md'), 'utf8');
+    expect(contents).toMatch(/presentation.*→.*logic/i);
+    expect(contents).toMatch(/logic.*→.*infrastructure/i);
+    expect(contents).toMatch(/never.*reverse|no.*reverse|never.*import.*upward/i);
+  });
+});
