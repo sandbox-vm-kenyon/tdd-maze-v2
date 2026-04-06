@@ -32,5 +32,25 @@ describe('presentation layer API', () => {
     test('is exported as a function', () => {
       expect(typeof presentation.renderPlayer).toBe('function');
     });
+
+    test('draws a circle centered in the correct cell', () => {
+      const ctx = {
+        fillStyle: '',
+        beginPath: jest.fn(),
+        arc: jest.fn(),
+        fill: jest.fn(),
+      };
+
+      presentation.renderPlayer(ctx, { row: 1, col: 2 }, 20);
+
+      expect(ctx.arc).toHaveBeenCalledWith(
+        2 * 20 + 10, // centerX
+        1 * 20 + 10, // centerY
+        6,            // radius = 20 * 0.3
+        0,
+        Math.PI * 2
+      );
+      expect(ctx.fill).toHaveBeenCalled();
+    });
   });
 });
