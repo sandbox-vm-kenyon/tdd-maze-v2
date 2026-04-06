@@ -15,4 +15,16 @@ describe('Layer structure', () => {
   test('src/infrastructure/ directory exists', () => {
     expect(fs.existsSync(path.join(srcDir, 'infrastructure'))).toBe(true);
   });
+
+  test('src/presentation/index.js barrel exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'presentation', 'index.js'))).toBe(true);
+  });
+
+  test('src/logic/index.js barrel exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'logic', 'index.js'))).toBe(true);
+  });
+
+  test('src/infrastructure/index.js barrel exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'infrastructure', 'index.js'))).toBe(true);
+  });
 });
