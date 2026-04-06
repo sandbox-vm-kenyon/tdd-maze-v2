@@ -7,7 +7,9 @@
  */
 
 const renderMaze = require('./renderMaze');
+const renderPlayer = require('./renderPlayer');
 
 module.exports = {
   renderMaze,
+  renderPlayer,
 };

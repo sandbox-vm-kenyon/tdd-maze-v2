@@ -27,4 +27,10 @@ describe('presentation layer API', () => {
       expect(strokes).toHaveLength(2);
     });
   });
+
+  describe('renderPlayer', () => {
+    test('is exported as a function', () => {
+      expect(typeof presentation.renderPlayer).toBe('function');
+    });
+  });
 });
