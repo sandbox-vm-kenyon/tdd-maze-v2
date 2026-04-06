@@ -45,3 +45,16 @@ describe('Barrel exports', () => {
     expect(typeof infrastructure).toBe('object');
   });
 });
+
+describe('API contracts document', () => {
+  test('src/api-contracts.md exists', () => {
+    expect(fs.existsSync(path.join(srcDir, 'api-contracts.md'))).toBe(true);
+  });
+
+  test('api-contracts.md documents the dependency rule', () => {
+    const contents = fs.readFileSync(path.join(srcDir, 'api-contracts.md'), 'utf8');
+    expect(contents).toMatch(/presentation.*→.*logic/i);
+    expect(contents).toMatch(/logic.*→.*infrastructure/i);
+    expect(contents).toMatch(/never.*reverse|no.*reverse|never.*import.*upward/i);
+  });
+});
