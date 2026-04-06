@@ -20,6 +20,31 @@ describe('generateMaze', () => {
     maze.forEach(row => expect(row).toHaveLength(4));
   });
 
+  test('generates a perfect maze — every cell is reachable from (0,0)', () => {
+    const rows = 5, cols = 6;
+    const maze = generateMaze(rows, cols);
+    const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
+    const DELTA = { N: [-1, 0], S: [1, 0], E: [0, 1], W: [0, -1] };
+
+    const stack = [[0, 0]];
+    visited[0][0] = true;
+    let count = 1;
+    while (stack.length) {
+      const [r, c] = stack.pop();
+      for (const [dir, [dr, dc]] of Object.entries(DELTA)) {
+        if (!maze[r][c][dir]) {
+          const nr = r + dr, nc = c + dc;
+          if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && !visited[nr][nc]) {
+            visited[nr][nc] = true;
+            count++;
+            stack.push([nr, nc]);
+          }
+        }
+      }
+    }
+    expect(count).toBe(rows * cols);
+  });
+
   test('every cell has exactly N, S, E, W boolean properties', () => {
     const maze = generateMaze(4, 5);
     for (const row of maze) {
